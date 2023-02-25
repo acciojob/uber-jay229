@@ -18,6 +18,8 @@ public class Admin{
         this.password = password;
     }
 
+    public Admin() {
+    }
 
     public int getAdminId() {
         return adminId;
