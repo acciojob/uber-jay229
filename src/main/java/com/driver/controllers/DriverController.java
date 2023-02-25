@@ -23,7 +23,6 @@ public class DriverController {
 
 	@DeleteMapping(value = "/delete")
 	public void deleteDriver(@RequestParam Integer driverId){
-
 		driverServiceImpl.removeDriver(driverId);
 	}
 

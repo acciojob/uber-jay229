@@ -3,26 +3,46 @@ package com.driver.model;
 import javax.persistence.*;
 
 @Entity
-@Table
-public class TripBooking {
+@Table(name = "TripBooking")
+public class TripBooking{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int tripBookingId;
-    private String fromLocation;
-    private String toLocation;
-    private TripStatus status;
-    private int distanceInKm;
-    private int bill;
+    int tripBookingId;
 
+    String fromLocation;
+
+    String toLocation;
+
+    int distanceInKm;
+
+    TripStatus status;
+
+    int bill;
+
+
+    //For mapping to customer(parent)
     @ManyToOne
     @JoinColumn
-    private Driver driver;
+    Customer customer;
 
+    //For mapping to driver(parent)
     @ManyToOne
     @JoinColumn
-    private Customer customer;
+    Driver driver;
 
     public TripBooking() {
+
+    }
+
+    public TripBooking(int tripBookingId, String fromLocation, String toLocation, int distanceInKm, TripStatus status, int bill, Customer customer, Driver driver) {
+        this.tripBookingId = tripBookingId;
+        this.fromLocation = fromLocation;
+        this.toLocation = toLocation;
+        this.distanceInKm = distanceInKm;
+        this.status = status;
+        this.bill = bill;
+        this.customer = customer;
+        this.driver = driver;
     }
 
     public int getTripBookingId() {
@@ -49,6 +69,14 @@ public class TripBooking {
         this.toLocation = toLocation;
     }
 
+    public int getDistanceInKm() {
+        return distanceInKm;
+    }
+
+    public void setDistanceInKm(int distanceInKm) {
+        this.distanceInKm = distanceInKm;
+    }
+
     public TripStatus getStatus() {
         return status;
     }
@@ -65,14 +93,6 @@ public class TripBooking {
         this.bill = bill;
     }
 
-    public Driver getDriver() {
-        return driver;
-    }
-
-    public void setDriver(Driver driver) {
-        this.driver = driver;
-    }
-
     public Customer getCustomer() {
         return customer;
     }
@@ -81,10 +101,11 @@ public class TripBooking {
         this.customer = customer;
     }
 
-    public void setDistanceInKm(int distanceInKm) {
+    public Driver getDriver() {
+        return driver;
     }
 
-    public int getDistanceInKm() {
-        return distanceInKm;
+    public void setDriver(Driver driver) {
+        this.driver = driver;
     }
 }
